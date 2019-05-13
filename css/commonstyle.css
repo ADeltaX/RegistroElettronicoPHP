@@ -1,0 +1,33 @@
+  
+  /* clearfix */
+  .container:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  
+  /* ---- card-item ---- */
+  
+  .card-item {
+    width: 280px;
+    height: 200px;
+    margin: 16px;
+  }
+
+.thumbnail {
+    max-width: 384px;
+    height: 256px;
+    overflow: hidden;
+}
+
+@media(max-width:768px) {
+    .thumbnail {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+}
