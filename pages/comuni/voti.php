@@ -135,29 +135,34 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Professori e Materie</h3>
+                <h3 class="page-title">Voti</h3>
               </div>
             </div>
             <div class="container" data-masonry='{ "itemSelector": ".card" }'>
               <table class="table table-striped">
                     <thead>
                       <tr>
+                        <th scope="col">Materia</th>
                         <th scope="col">Professore</th>
-                        <th scope="col">Materie</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Voto</th>
                       </tr>
                     </thead>
                   <?php
 
-                  $result = mysqli_query($db,"SELECT professori.Nome, materie.Descrizione
-                                              FROM professorimaterie
-                                              JOIN studenti ON studenti.Studente = professorimaterie.Studente
-                                              JOIN professori ON professori.IdProfessore = professorimaterie.IdProfessore
-                                              JOIN materie ON materie.IdMateria = professorimaterie.IdMateria
-                                              WHERE studenti.Utente=\"".$id."\";");
+                  $result = mysqli_query($db,"  SELECT materie.Descrizione, professori.Nome, voti.Tipo, voti.Data,voti.Dettaglio
+                                                FROM Voti
+                                                INNER JOIN materie ON voti.IdMateria=materie.IdMateria
+                                                INNER JOIN professori ON voti.IdProfessore=professori.IdProfessore
+                                                INNER JOIN studenti ON voti.Studente=studenti.Studente
+                                                WHERE studenti.Utente=\"".$id."\"
+                                                ORDER BY materie.IdMateria && voti.Data;
+                                                ");
 
                   while($row = mysqli_fetch_array($result))
                   {
-					echo "<tr><td>". $row['Nome'] . "</td><td>" . $row['Descrizione'] . "</td></tr>";
+					echo "<tr><td>". $row['Descrizione'] . "</td><td>" . $row['Nome'] . "</td><td>" . $row['Tipo'] . "</td><td>" . $row['Data'] . "</td><td>" . $row['Dettaglio'] . "</td></tr>";
                   }
                   echo "</table>";
 
