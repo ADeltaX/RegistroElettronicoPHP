@@ -1,10 +1,12 @@
 <?php
+
 //Vediamo se è già loggato, se sì lo reindirizzamo all'homepage.
 session_start();
 if (isset($_SESSION['id'])) {
 	header("Location: /RegistroElettronicoPHP/homepage.php");
 	exit();
 }
+
 ?>
 
 <!doctype HTML>
