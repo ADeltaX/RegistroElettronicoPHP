@@ -27,18 +27,13 @@ function StampaNavItems($tipoutente)
 	echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php">
 	  <i class="material-icons">vertical_split</i><span>Comunicazioni</span></a></li>';
 		
-	//MATERIE (+ classi per professore)
+	//MATERIE e PROFESSORI (+ classi per professore)
 	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-	  echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/materie.php">
-		<i class="material-icons">vertical_split</i><span>Materie</span></a></li>';
+	  echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php">
+		<i class="material-icons">vertical_split</i><span>Materie e Professori</span></a></li>';
 	else if ($tipoutente == 1) //professore
 	  echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/professori/materieclassi.php">
 		<i class="material-icons">vertical_split</i><span>Materie e Classi</span></a></li>';
-
-	//PROFESSORI
-	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-	  echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/professori.php">
-		<i class="material-icons">vertical_split</i><span>Professori</span></a></li>';
 
 	//ORARIO
 	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
