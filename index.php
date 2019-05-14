@@ -18,7 +18,7 @@ if (isset($_SESSION['id'])) {
 		<link rel="stylesheet" href="/RegistroElettronicoPHP/fonts/fontello/css/fontello.css" />
 		<link rel="stylesheet" href="/RegistroElettronicoPHP/css/offset-right.css">
 		<link rel="stylesheet" href="/RegistroElettronicoPHP/css/style.css">
-		<title>Material Design Login Template</title>
+		<title>FAKElog login</title>
 	</head>
 	<body>
 		<div class="container">
