@@ -157,7 +157,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                                                 INNER JOIN professori ON voti.IdProfessore=professori.IdProfessore
                                                 INNER JOIN studenti ON voti.Studente=studenti.Studente
                                                 WHERE studenti.Utente=\"".$id."\"
-                                                ORDER BY materie.IdMateria && voti.Data;
+                                                ORDER BY  materie.IdMateria, voti.Data;
                                                 ");
 
                   while($row = mysqli_fetch_array($result))
