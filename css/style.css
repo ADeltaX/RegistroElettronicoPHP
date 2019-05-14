@@ -297,6 +297,13 @@ a:focus {
 	margin-top: 232px !important;
 }
 
+#brandblock {
+	transform-origin: 100% 50%;
+    transform-style: preserve-3d;
+    transform: rotateY(-25deg);
+	transition: transform 0.25s ease-in-out;
+}
+
 /* Media Queries*/
 
 @media(max-width:768px) {
@@ -320,6 +327,8 @@ a:focus {
 	
 	#brandblock {
 		height: 40%;
+		transform: rotateY(0deg);
+		transition: transform 0.25s ease-in-out;
 	}
 	#responsiveimg {
 		position: absolute; 

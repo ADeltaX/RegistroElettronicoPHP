@@ -25,7 +25,7 @@ if (isset($_SESSION['id'])) {
 	<body>
 		<div class="container">
 			<div class="child">
-				<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-12 col-xs-12 no-padding" style="z-index:1">
+				<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-12 col-xs-12 no-padding" style="z-index:1; perspective: 1500px;">
 					<div id="brandblock" class="item">
 						<div style="position: relative;">
 							<img id="responsiveimg" alt="logo" src="images/Fakelogo_WB.svg">
