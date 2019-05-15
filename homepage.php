@@ -22,6 +22,19 @@ $tipoutente = $_SESSION['tipoutente'];
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <style>
+        .card-item{
+                /* the other rules */
+                
+                transition: 0.3s, box-shadow 0.3s;
+              }
+        .card:hover {
+          box-shadow: 0px 0px 30px 10px rgba(0,0,0,0.5);
+          transform: scale(1.05);
+        }
+
+    </style>
+
 
     <title>FAKElog homepage</title>
     <meta name="description" content="FAKElog Registro Elettronico">
@@ -134,61 +147,7 @@ $tipoutente = $_SESSION['tipoutente'];
             </div>
             <div class="container" data-masonry='{ "itemSelector": ".card" }'>
               <div class="grid" >
-                
-                <!-- Card Appello -->
-                <div class="card card-item" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">APPELLO</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="appello.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-                  </div>
-                </div>
-
-                <!-- Card Assenze -->
-                <div class="card card-item" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">ASSENZE</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="assenze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-                  </div>
-                </div>
-
-                <!-- Card NOTE -->
-                <div class="card card-item" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">NOTE DISCIPLINARI</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary" style="float: right;">Visualizza</a>
-                  </div>
-                </div>
-
-                <!-- Card COMUNICAZIONI -->
-                <div class="card card-item" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">COMUNICAZIONI</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary" style="float: right;">Visualizza</a>
-                  </div>
-                </div>
-
-                <!-- Card ORARIO -->
-                <div class="card card-item" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">ORARIO</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary" style="float: right;">Visualizza</a>
-                  </div>
-                </div>
-
-                <!-- Card UDIENZE -->
-                <div class="card card-item" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">UDIENZE</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary" style="float: right;">Visualizza</a>
-                  </div>
-                </div>
-
+              <?php stampaCardHomepage($tipoutente); ?>
               </div>
             </div>
             <!-- End Page Header -->

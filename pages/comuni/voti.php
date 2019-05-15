@@ -64,7 +64,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="homepage.php">
+                <a class="nav-link active" href="../../homepage.php">
                   <i class="material-icons">edit</i>
                   <span>Dashboard</span>
                 </a>
