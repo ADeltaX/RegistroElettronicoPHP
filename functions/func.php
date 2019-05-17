@@ -28,6 +28,26 @@ function GetNomeCognome($db, $utente)
         return null;
 }
 
+function GetDatiUtente($db, $utente)
+{
+    $stmt = $db->prepare('SELECT * FROM gestutenti WHERE Utente = ?');
+    $stmt->bind_param('s', $utente); //'s' => string
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck > 0)
+    {
+        if ($row = mysqli_fetch_assoc($result))
+            return array($row['Nome'], $row['Cognome'], $row['Email'], 
+                            $row['DataDiNascita'], $row['CodiceFiscale'], $row['Residenza'], 
+                            $row['Cellulare'], $row['PercorsoFoto']);
+    }
+    else
+        return null;
+}
+
 function GetPercorsoFoto($db, $utente)
 {
     $stmt = $db->prepare('SELECT * FROM gestutenti WHERE Utente = ?');
