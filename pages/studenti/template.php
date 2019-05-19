@@ -35,9 +35,9 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" data-version="1.1.0" href="/RegistroElettronicoPHP/styles/shards-dashboards.1.1.0.css">
+    <?php StampaAccentCSS($tipoutente); ?>
     <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/extras.1.1.0.min.css">
-    <link rel="stylesheet" href="/RegistroElettronicoPHP/css/commonstyle.css">
+    <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/commonstyle.css">
   </head>
   <body class="h-100">
     <div class="container-fluid">
@@ -45,7 +45,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
         <!-- Main Sidebar -->
         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
           <div class="main-navbar">
-            <nav class="navbar align-items-stretch navbar-light bg-blue flex-md-nowrap p-0">
+            <nav class="navbar align-items-stretch navbar-light bg-navbar flex-md-nowrap p-0">
               <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
                 <div class="d-table m-auto">
                   <span class="d-none d-md-inline ml-1 text-white">Registro Elettronico</span>
@@ -75,7 +75,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
         </aside>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-          <div class="main-navbar sticky-top bg-lightblue">
+          <div class="main-navbar sticky-top bg-navbar-light">
             <!-- Main Navbar -->
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
               <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">

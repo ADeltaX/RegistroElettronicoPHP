@@ -1,5 +1,20 @@
 <?php
 
+function StampaAccentCSS($tipoutente)
+{
+	switch ($tipoutente) {
+		case 1: //professore
+			echo '<link rel="stylesheet" href="/RegistroElettronicoPHP/styles/accent_professore.css">';
+			break;
+		case 2: //genitore
+			echo '<link rel="stylesheet" href="/RegistroElettronicoPHP/styles/accent_genitore.css">';
+			break;
+		case 3: //studente
+			echo '<link rel="stylesheet" href="/RegistroElettronicoPHP/styles/accent_studente.css">';
+			break;
+	}
+}
+
 function StampaNavItems($tipoutente)
 {
 	//APPELLO
@@ -24,16 +39,16 @@ function StampaNavItems($tipoutente)
 		<i class="material-icons">clear</i><span>Gestione assenze</span></a></li>';
 
 	//COMUNICAZIONI - per tutti
-		echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php">
-		<i class="material-icons">comment</i><span>Comunicazioni</span></a></li>';
+	echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php">
+	<i class="material-icons">comment</i><span>Comunicazioni</span></a></li>';
 		
-		//ORARIO
-		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
+	//ORARIO
+	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
 		echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/orario.php">
 		<i class="material-icons">access_time</i><span>Orario lezioni</span></a></li>';
-		else if ($tipoutente == 1) //professore
-			echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/professori/orario.php">
-			<i class="material-icons">query_builder</i><span>Orario</span></a></li>';
+	else if ($tipoutente == 1) //professore
+		echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/professori/orario.php">
+		<i class="material-icons">query_builder</i><span>Orario</span></a></li>';
 		
 	//MATERIE e PROFESSORI (+ classi per professore)
 	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
@@ -53,28 +68,22 @@ function StampaNavItems($tipoutente)
 
 	//UDIENZE
 	if ($tipoutente == 2) //genitore e studente
-	echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/udienze.php">
-	<i class="material-icons">add_alert</i><span>Udienze</span></a></li>';
+		echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/udienze.php">
+		<i class="material-icons">add_alert</i><span>Udienze</span></a></li>';
 	else if ($tipoutente == 1) //professore
-	echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/professori/udienze.php">
-	<i class="material-icons">add_alert</i><span>Udienze</span></a></li>';
-
-
+		echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/professori/udienze.php">
+		<i class="material-icons">add_alert</i><span>Udienze</span></a></li>';
 
 	//IMPOSTAZIONI
 	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-	echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/impostazioni.php">
-	<i class="material-icons">settings</i><span>Impostazioni</span></a></li>';
-	else if ($tipoutente == 1) //professore
-	echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/professori/impostazioni.php">
-	<i class="material-icons">settings</i><span>Impostazioni</span></a></li>';
+		echo '<li class="nav-item"><a class="nav-link" href="/RegistroElettronicoPHP/pages/comuni/impostazioni.php">
+		<i class="material-icons">settings</i><span>Impostazioni</span></a></li>';
 }
 
-function stampaCardHomepage($tipoutente)
+function StampaCardHomepage($tipoutente)
 {
 		//Card Appello
 		if ($tipoutente == 1) //professore
-		{
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">APPELLO</h5>
@@ -83,19 +92,17 @@ function stampaCardHomepage($tipoutente)
 							</div>
 						</div>';
 
-		}
 
 		//Card Voti
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-		echo '<div class="card card-item" style="width: 18rem;">
-						<div class="card-body">
-							<h5 class="card-title">VOTI</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-							<a href="/RegistroElettronicoPHP/pages/comuni/voti.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-						</div>
-					</div>';
-	else if ($tipoutente == 1) //professore
-	{
+			echo '<div class="card card-item" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">VOTI</h5>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<a href="/RegistroElettronicoPHP/pages/comuni/voti.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+							</div>
+						</div>';
+		else if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">INSERISCI VOTI</h5>
@@ -103,20 +110,18 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/voti.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
 
-	//Card Assenze
+		//Card Assenze
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-		echo '<div class="card card-item" style="width: 18rem;">
-						<div class="card-body">
-							<h5 class="card-title">ASSENZE</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-							<a href="/RegistroElettronicoPHP/pages/comuni/assenze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-						</div>
-					</div>';
-	else if ($tipoutente == 1) //professore
-	{
+			echo '<div class="card card-item" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">ASSENZE</h5>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<a href="/RegistroElettronicoPHP/pages/comuni/assenze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+							</div>
+						</div>';
+		else if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">GESTIONE ASSENZE</h5>
@@ -124,23 +129,18 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/assenze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
 
-	//Card COMUNICAZIONI
+		//Card COMUNICAZIONI
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-		{
-					echo '<div class="card card-item" style="width: 18rem;">
-									<div class="card-body">
-										<h5 class="card-title">COMUNICAZIONI</h5>
-										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-										<a href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-									</div>
-								</div>';
-		}
-
-	else if ($tipoutente == 1) //professore
-	{
+			echo '<div class="card card-item" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">COMUNICAZIONI</h5>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<a href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+							</div>
+						</div>';
+		else if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">COMUNICAZIONI</h5>
@@ -148,23 +148,18 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/comunicazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
 
-	//Card ORARIO
+		//Card ORARIO
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-		{
-					echo '<div class="card card-item" style="width: 18rem;">
-									<div class="card-body">
-										<h5 class="card-title">ORARIO</h5>
-										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-										<a href="/RegistroElettronicoPHP/pages/comuni/orario.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-									</div>
-								</div>';
-		}
-
-	else if ($tipoutente == 1) //professore
-	{
+			echo '<div class="card card-item" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">ORARIO</h5>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<a href="/RegistroElettronicoPHP/pages/comuni/orario.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+							</div>
+						</div>';
+		else if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ORARIO</h5>
@@ -172,11 +167,10 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/orario.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
-	// CARD MATERIE E CLASSI
-	if ($tipoutente == 1) //professore
-	{
+
+		//Card MATERIE E CLASSI
+		if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">MATERIE E CLASSI</h5>
@@ -184,10 +178,10 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/materieeclassi.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
-	if ($tipoutente == 1) //professore
-	{
+
+		//Card INSERISCI NOTE
+		if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">INSERISCI NOTE</h5>
@@ -195,13 +189,7 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/notedisciplinari.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
-
-	
-
-
-	else if ($tipoutente == 1) //professore
-	{
+		else if ($tipoutente == 1) //professore
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">UDIENZE</h5>
@@ -209,73 +197,50 @@ function stampaCardHomepage($tipoutente)
 								<a href="/RegistroElettronicoPHP/pages/professori/udienze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
 
-	//Card MATERIE E PROFESSORI
-	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-	{
-				echo '<div class="card card-item" style="width: 18rem;">
-								<div class="card-body">
-									<h5 class="card-title">MATERIE E PROFESSORI</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-									<a href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-								</div>
-							</div>';
-	}
+		//Card MATERIE E PROFESSORI
+		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
+			echo '<div class="card card-item" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">MATERIE E PROFESSORI</h5>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<a href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+							</div>
+						</div>';
+
 
 		//Card NOTE
 		if ($tipoutente == 2) //genitore
-		echo '<div class="card card-item" style="width: 18rem;">
-						<div class="card-body">
-							<h5 class="card-title">NOTE DISCIPLINARI</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-							<a href="/RegistroElettronicoPHP/pages/comuni/notedisciplinari.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-						</div>
-					</div>';
-
-	//Card UDIENZE
-	if ($tipoutente == 2) //genitore
-	{
-				echo '<div class="card card-item" style="width: 18rem;">
-								<div class="card-body">
-									<h5 class="card-title">UDIENZE</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-									<a href="/RegistroElettronicoPHP/pages/comuni/udienze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-								</div>
-							</div>';
-	}
-
-	//Card IMPOSTAZIONI
-	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-	{
-				echo '<div class="card card-item" style="width: 18rem;">
-								<div class="card-body">
-									<h5 class="card-title">IMPOSTAZIONI</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-									<a href="/RegistroElettronicoPHP/pages/comuni/impostazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-								</div>
-							</div>';
-	}
-
-	else if ($tipoutente == 1) //professore
-	{
 			echo '<div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
-								<h5 class="card-title">IMPOSTAZIONI</h5>
+								<h5 class="card-title">NOTE DISCIPLINARI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/impostazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<a href="/RegistroElettronicoPHP/pages/comuni/notedisciplinari.php" class="btn btn-primary" style="float: right;">Visualizza</a>
 							</div>
 						</div>';
-	}
 
 
+		//Card UDIENZE
+		if ($tipoutente == 2) //genitore
+					echo '<div class="card card-item" style="width: 18rem;">
+									<div class="card-body">
+										<h5 class="card-title">UDIENZE</h5>
+										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+										<a href="/RegistroElettronicoPHP/pages/comuni/udienze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+									</div>
+								</div>';
 
 
-
+		//Card IMPOSTAZIONI
+		echo '<div class="card card-item" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">IMPOSTAZIONI</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+							<a href="/RegistroElettronicoPHP/pages/comuni/impostazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+						</div>
+					</div>';
 }
-
-
 
 function StampaFooter()
 {

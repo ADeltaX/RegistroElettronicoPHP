@@ -52,4 +52,6 @@ function GetPercorsoFoto($db, $utente)
 	echo "/RegistroElettronicoPHP/images/avatars/default.png";
 }
 
+
+
 ?>

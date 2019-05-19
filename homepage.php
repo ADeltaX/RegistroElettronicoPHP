@@ -23,16 +23,16 @@ $tipoutente = $_SESSION['tipoutente'];
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <style>
-        .card-item{
-                /* the other rules */
-                
-                transition: 0.3s, box-shadow 0.3s;
-              }
+		.card:not(:hover) {
+		   transition: box-shadow .125s ease-in-out;
+		}
+		
         .card:hover {
-          box-shadow: 0px 0px 30px 10px rgba(0,0,0,0.5);
-          transform: scale(1.05);
-        }
-
+           box-shadow: 0px 0px 40px 8px rgba(0,0,0,0.2);
+           /*transform: scale(1.05);*/
+		   transition: box-shadow .125s ease-in-out;
+	    }
+		
     </style>
 
 
@@ -42,9 +42,9 @@ $tipoutente = $_SESSION['tipoutente'];
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" data-version="1.1.0" href="/RegistroElettronicoPHP/styles/shards-dashboards.1.1.0.css">
+    <?php StampaAccentCSS($tipoutente); ?>
     <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/extras.1.1.0.min.css">
-    <link rel="stylesheet" href="/RegistroElettronicoPHP/css/commonstyle.css">
+    <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/commonstyle.css">
   </head>
   <body class="h-100">
     <div class="container-fluid">
@@ -52,7 +52,7 @@ $tipoutente = $_SESSION['tipoutente'];
         <!-- Main Sidebar -->
         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
           <div class="main-navbar">
-            <nav class="navbar align-items-stretch navbar-light bg-blue flex-md-nowrap p-0">
+            <nav class="navbar align-items-stretch navbar-light bg-navbar flex-md-nowrap p-0">
               <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
                 <div class="d-table m-auto">
                   <span class="d-none d-md-inline ml-1 text-white">Registro Elettronico</span>
@@ -63,11 +63,7 @@ $tipoutente = $_SESSION['tipoutente'];
               </a>
             </nav>
           </div>
-          <form action="#" class="main-sidebar__search w-100 d-sm-flex d-md-none d-lg-none">
-            <div class="input-group input-group-seamless ml-3">
-              <input class="ml-3 navbar-search form-control bg-transparent text-dark" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-            </div>
-          </form>
+          <div class="w-100 d-md-flex d-lg-flex"></div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -82,19 +78,10 @@ $tipoutente = $_SESSION['tipoutente'];
         </aside>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-          <div class="main-navbar sticky-top bg-lightblue">
+          <div class="main-navbar sticky-top bg-navbar-light">
             <!-- Main Navbar -->
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-              <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                <div class="input-group input-group-seamless ml-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-search text-white"></i>
-                    </div>
-                  </div>
-                  <input class="navbar-search form-control bg-transparent text-white" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-                </div>
-              </form>
+              <div class="w-100 d-md-flex d-lg-flex"></div>
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -147,7 +134,7 @@ $tipoutente = $_SESSION['tipoutente'];
             </div>
             <div class="container" data-masonry='{ "itemSelector": ".card" }'>
               <div class="grid" >
-              <?php stampaCardHomepage($tipoutente); ?>
+              <?php StampaCardHomepage($tipoutente); ?>
               </div>
             </div>
             <!-- End Page Header -->

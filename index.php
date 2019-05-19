@@ -18,8 +18,8 @@ if (isset($_SESSION['id'])) {
 		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-deep_purple.min.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
 		<link rel="stylesheet" href="/RegistroElettronicoPHP/fonts/fontello/css/fontello.css" />
-		<link rel="stylesheet" href="/RegistroElettronicoPHP/css/offset-right.css">
-		<link rel="stylesheet" href="/RegistroElettronicoPHP/css/style.css">
+		<link rel="stylesheet" href="/RegistroElettronicoPHP/styles/offset-right.css">
+		<link rel="stylesheet" href="/RegistroElettronicoPHP/styles/loginstyle.css">
 		<title>FAKElog login</title>
 	</head>
 	<body>
