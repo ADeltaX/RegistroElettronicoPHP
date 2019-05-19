@@ -4255,19 +4255,18 @@ a.text-accent:hover, a.text-accent:focus {
     transition: box-shadow 200ms ease, color 200ms ease, background-color 200ms ease;
     font-size: 0.85rem; }
   .main-sidebar .nav .nav-item .nav-link {
-    border-bottom: 1px solid #e1e5eb;
     font-weight: 400;
     color: #3D5170;
-    padding: 0.9375rem 1.5625rem; }
+    padding: 16px 16px; }
     .main-sidebar .nav .nav-item .nav-link i {
-      min-width: 1.25rem;
-      font-size: 90%;
-      text-align: center;
-      vertical-align: middle;
-      will-change: color;
-      color: #CACEDB;
-      transition: color 200ms ease;
-      margin-right: 0.375rem; }
+    min-width: 1.25rem;
+    font-size: 90%;
+    text-align: center;
+    vertical-align: middle;
+    will-change: color;
+    color: #CACEDB;
+    transition: color 200ms ease-in-out;
+    margin-right: 16px; }
     .main-sidebar .nav .nav-item .nav-link i.material-icons {
       font-size: 1.125rem;
       top: -1px; }

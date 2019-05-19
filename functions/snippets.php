@@ -84,162 +84,162 @@ function StampaCardHomepage($tipoutente)
 {
 		//Card Appello
 		if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="appello.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">APPELLO</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="appello.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card Voti
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/voti.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">VOTI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/comuni/voti.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 		else if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/voti.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">INSERISCI VOTI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/voti.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card Assenze
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/assenze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ASSENZE</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/comuni/assenze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 		else if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/assenze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">GESTIONE ASSENZE</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/assenze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card COMUNICAZIONI
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">COMUNICAZIONI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 		else if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/comunicazioni.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">COMUNICAZIONI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/comunicazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card ORARIO
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/orario.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ORARIO</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/comuni/orario.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 		else if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/orario.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ORARIO</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/orario.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card MATERIE E CLASSI
 		if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/materieeclassi.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">MATERIE E CLASSI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/materieeclassi.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card INSERISCI NOTE
 		if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/notedisciplinari.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">INSERISCI NOTE</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/notedisciplinari.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 		else if ($tipoutente == 1) //professore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/udienze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">UDIENZE</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/professori/udienze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card MATERIE E PROFESSORI
 		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">MATERIE E PROFESSORI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card NOTE
 		if ($tipoutente == 2) //genitore
-			echo '<div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/notedisciplinari.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">NOTE DISCIPLINARI</h5>
 								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<a href="/RegistroElettronicoPHP/pages/comuni/notedisciplinari.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
 							</div>
-						</div>';
+						</div></a>';
 
 
 		//Card UDIENZE
 		if ($tipoutente == 2) //genitore
-					echo '<div class="card card-item" style="width: 18rem;">
-									<div class="card-body">
-										<h5 class="card-title">UDIENZE</h5>
-										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-										<a href="/RegistroElettronicoPHP/pages/comuni/udienze.php" class="btn btn-primary" style="float: right;">Visualizza</a>
-									</div>
-								</div>';
+			echo '<a href="/RegistroElettronicoPHP/pages/comuni/udienze.php"><div class="card card-item" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">UDIENZE</h5>
+								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<div class="btn btn-primary" style="float: right;">Visualizza</div>
+							</div>
+						</div></a>';
 
 
 		//Card IMPOSTAZIONI
-		echo '<div class="card card-item" style="width: 18rem;">
+		echo '<a href="/RegistroElettronicoPHP/pages/comuni/impostazioni.php"><div class="card card-item" style="width: 18rem;">
 						<div class="card-body">
 							<h5 class="card-title">IMPOSTAZIONI</h5>
 							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-							<a href="/RegistroElettronicoPHP/pages/comuni/impostazioni.php" class="btn btn-primary" style="float: right;">Visualizza</a>
+							<div class="btn btn-primary" style="float: right;">Visualizza</div>
 						</div>
-					</div>';
+					</div></a>';
 }
 
 function StampaFooter()

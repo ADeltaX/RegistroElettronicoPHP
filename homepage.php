@@ -67,7 +67,7 @@ $tipoutente = $_SESSION['tipoutente'];
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="homepage.php">
+                <a class="nav-link" href="homepage.php">
                   <i class="material-icons">edit</i>
                   <span>Dashboard</span>
                 </a>
@@ -129,7 +129,7 @@ $tipoutente = $_SESSION['tipoutente'];
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Funzionalità</h3>
+                <h3 class="page-title">Strumenti Dashboard</h3>
               </div>
             </div>
             <div class="container" data-masonry='{ "itemSelector": ".card" }'>

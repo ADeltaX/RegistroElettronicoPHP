@@ -22,15 +22,15 @@ $tipoutente = $_SESSION['tipoutente'];
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Profilo FAKElog</title>
+    <title>FAKElog homepage</title>
     <meta name="description" content="FAKElog Registro Elettronico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" data-version="1.1.0" href="/RegistroElettronicoPHP/styles/shards-dashboards.1.1.0.css">
+    <?php StampaAccentCSS($tipoutente); ?>
     <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/extras.1.1.0.min.css">
-    <link rel="stylesheet" href="/RegistroElettronicoPHP/css/commonstyle.css">
+    <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/commonstyle.css">
   </head>
   <body class="h-100">
     <div class="container-fluid">
@@ -38,7 +38,7 @@ $tipoutente = $_SESSION['tipoutente'];
         <!-- Main Sidebar -->
         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
           <div class="main-navbar">
-            <nav class="navbar align-items-stretch navbar-light bg-blue flex-md-nowrap p-0">
+            <nav class="navbar align-items-stretch navbar-light bg-navbar flex-md-nowrap p-0">
               <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
                 <div class="d-table m-auto">
                   <span class="d-none d-md-inline ml-1 text-white">Registro Elettronico</span>
@@ -49,11 +49,7 @@ $tipoutente = $_SESSION['tipoutente'];
               </a>
             </nav>
           </div>
-          <form action="#" class="main-sidebar__search w-100 d-sm-flex d-md-none d-lg-none">
-            <div class="input-group input-group-seamless ml-3">
-              <input class="ml-3 navbar-search form-control bg-transparent text-dark" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-            </div>
-          </form>
+          <div class="w-100 d-md-flex d-lg-flex"></div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -68,19 +64,10 @@ $tipoutente = $_SESSION['tipoutente'];
         </aside>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-          <div class="main-navbar sticky-top bg-lightblue">
+          <div class="main-navbar sticky-top bg-navbar-light">
             <!-- Main Navbar -->
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-              <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                <div class="input-group input-group-seamless ml-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-search text-white"></i>
-                    </div>
-                  </div>
-                  <input class="navbar-search form-control bg-transparent text-white" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-                </div>
-              </form>
+              <div class="w-100 d-md-flex d-lg-flex"></div>
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -99,7 +86,7 @@ $tipoutente = $_SESSION['tipoutente'];
                       list($nome, $cognome) = GetNomeCognome($db, $id);
                       if ($nome != null && $cognome != null)
                       {
-                        if ($tipoutente == 2) //Genitore
+                        if ($tipoutente == 2) //Genitore - TODO, FIX
                           echo "Genitore per ";
                         echo "$cognome $nome";
                       }
@@ -108,10 +95,10 @@ $tipoutente = $_SESSION['tipoutente'];
                   </a>
                   <div class="dropdown-menu dropdown-menu-big">
                     <a class="dropdown-item" href="/RegistroElettronicoPHP/profile.php">
-                      <i class="material-icons">&#xE7FD;</i> Profilo</a>
+                      <i class="material-icons">&#xE7FD;</i>  Profilo</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="/RegistroElettronicoPHP/logout.php">
-                      <i class="material-icons text-danger">&#xE879;</i> Esci </a>
+                      <i class="material-icons text-danger">&#xE879;</i>  Esci </a>
                   </div>
                 </li>
               </ul>
@@ -128,11 +115,11 @@ $tipoutente = $_SESSION['tipoutente'];
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Profilo</h3>
+                <h3 class="page-title">Funzionalità</h3>
               </div>
             </div>
-            <div class="container" data-masonry=''>
-              <div class="card card-small mb-4 pt-3" style="max-width: 320px; margin-right: 24px">
+            <div class="container" data-masonry='{ "itemSelector": ".card" }'>
+                            <div class="card card-small mb-4 pt-3" style="max-width: 320px; margin-right: 24px">
                   <div class="card-header border-bottom text-center">
                     <div class="mb-3 mx-auto">
                       <img class="rounded-circle" src="<?php GetPercorsoFoto($db, $id); ?>" alt="User Avatar" width="110">
@@ -222,7 +209,7 @@ $tipoutente = $_SESSION['tipoutente'];
             <!-- End Page Header -->
           </div>
           <footer class="main-footer footer d-flex p-2 px-3 bg-white">
-            <?php StampaFooter(); ?>
+			<?php StampaFooter(); ?>
           </footer>
         </main>
       </div>
