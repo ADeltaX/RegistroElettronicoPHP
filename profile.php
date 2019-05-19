@@ -14,6 +14,7 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
+$nomepagina = "profile";
 
 ?>
 
@@ -52,13 +53,7 @@ $tipoutente = $_SESSION['tipoutente'];
           <div class="w-100 d-md-flex d-lg-flex"></div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="homepage.php">
-                  <i class="material-icons">edit</i>
-                  <span>Dashboard</span>
-                </a>
-              </li>
-              <?php StampaNavItems($tipoutente); ?>
+              <?php StampaNavItems($tipoutente, $nomepagina); ?>
             </ul>
           </div>
         </aside>
@@ -207,9 +202,8 @@ $tipoutente = $_SESSION['tipoutente'];
               </div>
             </div>
             <!-- End Page Header -->
-          </div>
           <footer class="main-footer footer d-flex p-2 px-3 bg-white">
-			<?php StampaFooter(); ?>
+			      <?php StampaFooter(); ?>
           </footer>
         </main>
       </div>

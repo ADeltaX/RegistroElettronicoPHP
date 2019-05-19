@@ -14,6 +14,7 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
+$nomepagina = "template";
 
 if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
 {
@@ -56,20 +57,10 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               </a>
             </nav>
           </div>
-          <form action="#" class="main-sidebar__search w-100 d-sm-flex d-md-none d-lg-none">
-            <div class="input-group input-group-seamless ml-3">
-              <input class="ml-3 navbar-search form-control bg-transparent text-dark" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-            </div>
-          </form>
+          <div class="w-100 d-md-flex d-lg-flex"></div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="homepage.php">
-                  <i class="material-icons">edit</i>
-                  <span>Dashboard</span>
-                </a>
-              </li>
-              <?php StampaNavItems($tipoutente); ?>
+              <?php StampaNavItems($tipoutente, $nomepagina); ?>
             </ul>
           </div>
         </aside>
@@ -78,16 +69,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
           <div class="main-navbar sticky-top bg-navbar-light">
             <!-- Main Navbar -->
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-              <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                <div class="input-group input-group-seamless ml-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-search text-white"></i>
-                    </div>
-                  </div>
-                  <input class="navbar-search form-control bg-transparent text-white" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-                </div>
-              </form>
+              <div class="w-100 d-md-flex d-lg-flex"></div>
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
