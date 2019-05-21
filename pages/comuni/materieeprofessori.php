@@ -73,12 +73,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="nav-link-icon__wrapper">
-                      <i class="material-icons text-white">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-warning">4</span>
-                    </div>
                   </a>
-                  <?php StampaNotificheEsempio(); ?>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -89,7 +84,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                       if ($nome != null && $cognome != null)
                       {
                         if ($tipoutente == 2) //Genitore - TODO, FIX
-                          echo "Genitore per ";
+                          echo "Genitore di ";
                         echo "$cognome $nome";
                       }
                     ?>
@@ -132,27 +127,24 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                         <table class="table mb-0">
                           <thead class="bg-light">
                             <tr>
-                              <th scope="col" class="border-0">Materia</th>
                               <th scope="col" class="border-0">Professore</th>
-                              <th scope="col" class="border-0">Data</th>
-                              <th scope="col" class="border-0">Voto</th>
+                              <th scope="col" class="border-0">Materia</th>
+                              
                             </tr>
                           </thead>
                           <tbody>';
 
-              $result = mysqli_query($db,"  SELECT materie.Descrizione, voti.Data, voti.Voto, gestutenti.Nome, gestutenti.Cognome
-                                            FROM Voti 
-                                            INNER JOIN materie ON voti.IdMateria=materie.IdMateria 
-                                            INNER JOIN professori ON voti.IdProfessore=professori.IdProfessore
-                                            INNER JOIN gestutenti ON gestutenti.Utente=professori.Utente
-                                            INNER JOIN studenti ON voti.Studente=studenti.Studente 
-                                            WHERE studenti.Utente='".$id."' 
-                                            ORDER BY materie.IdMateria, voti.Data");
+$result = mysqli_query($db,"SELECT professori.Utente, materie.Descrizione
+                          FROM professorimaterie
+                          INNER JOIN professori ON professori.IdProfessore = professorimaterie.IdProfessore
+                          INNER JOIN materie ON materie.IdMateria = professorimaterie.IdMateria
+                          INNER JOIN studenti ON studenti.Classe = professorimaterie.Classe
+                          WHERE studenti.Classe='".$id."';");
               $body = "";
               while($row = mysqli_fetch_array($result))
               {
                   //. "</td><td>" . $row['Tipo']
-                  $body .= "<tr><td>". $row['Descrizione'] . "</td><td>" . $row['Cognome'] . " " . $row['Nome']  . "</td><td>" . $row['Data']  . "</td><td>" . $row['Voto'] . "</td></tr>";
+                  $body .= "<tr><td>". $row['Utente'] . "</td><td>" . $row['Descrizione']. "</td></tr>";
               }
 
               if (!empty($body))
@@ -166,34 +158,9 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                 echo $table.$body.$end;
               }
               else
-                echo '<div class="alert alert-primary" role="alert">Non hai alcun voto!</div>';
+                echo '<div class="alert alert-primary" role="alert">Non hai alcun professore!</div>';
                 
             ?>
-
-
-              <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Professore</th>
-                        <th scope="col">Materie</th>
-                      </tr>
-                    </thead>
-                  <?php
-
-                  $result = mysqli_query($db,"SELECT professori.Nome, materie.Descrizione
-                                              FROM professorimaterie
-                                              JOIN studenti ON studenti.Studente = professorimaterie.Studente
-                                              JOIN professori ON professori.IdProfessore = professorimaterie.IdProfessore
-                                              JOIN materie ON materie.IdMateria = professorimaterie.IdMateria
-                                              WHERE studenti.Utente=\"".$id."\";");
-
-                  while($row = mysqli_fetch_array($result))
-                  {
-					echo "<tr><td>". $row['Nome'] . "</td><td>" . $row['Descrizione'] . "</td></tr>";
-                  }
-                  echo "</table>";
-
-                  ?>
             </div>
             <!-- End Page Header -->
           </div>

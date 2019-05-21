@@ -90,7 +90,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="appello.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">APPELLO</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione rigurdante all&rsquo;appello della tua classe.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -101,7 +101,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/voti.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">VOTI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante i voti che hai ricevuto.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -109,7 +109,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/professori/voti.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">INSERISCI VOTI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante l&rsquo;inserimento dei voti.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -120,7 +120,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/assenze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ASSENZE</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le tue assenze.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -128,7 +128,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/professori/assenze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">GESTIONE ASSENZE</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante l&rsquo;inserimento delle assenze.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -139,7 +139,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">COMUNICAZIONI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le tue comunicazioni.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -147,7 +147,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/professori/comunicazioni.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">COMUNICAZIONI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le tue comunicazioni.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -158,7 +158,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/orario.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ORARIO</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante il tuo orario scolastico.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -166,7 +166,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/professori/orario.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ORARIO</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante il tuo orario scolastico.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -177,7 +177,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/professori/materieeclassi.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">MATERIE E CLASSI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le materie e le classi dell&rsquo;istituto.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -188,15 +188,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/professori/notedisciplinari.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">INSERISCI NOTE</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
-							</div>
-						</div></a>';
-		else if ($tipoutente == 1) //professore
-			echo '<a href="/RegistroElettronicoPHP/pages/professori/udienze.php"><div class="card card-item" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">UDIENZE</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le note disciplinari</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -207,7 +199,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">MATERIE E PROFESSORI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le materie e le classi della tua classe.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -218,7 +210,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/notedisciplinari.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">NOTE DISCIPLINARI</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le note disciplinari</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -229,7 +221,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/udienze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">UDIENZE</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le prenotazioni delle udienze</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -249,37 +241,6 @@ function StampaFooter()
 {
 	echo '<ul class="nav"><li class="nav-item"><a class="nav-link" href="">Dashboard</a></li></ul>
 		<span class="copyright ml-auto my-auto mr-2">Copyright © '.date("Y").' <a href="https://fakelog.it" rel="nofollow">FAKElog</a></span>';
-}
-
-function StampaNotificheEsempio()
-{
-	echo '<div class="dropdown-menu dropdown-menu-big" aria-labelledby="dropdownMenuLink">
-			<a class="dropdown-item" href="#">
-			  <div class="notification__icon-wrapper">
-				<div class="notification__icon">
-				  <i class="material-icons">accessible_forward</i>
-				</div>
-			  </div>
-			  <div class="notification__content">
-				<span class="notification__category">Voti</span>
-				<p>Il tuo professore di matematica ti ha dato 
-				  <span class="text-success text-semibold">8</span>. Congratulazioni!</p>
-			  </div>
-			</a>
-			<a class="dropdown-item" href="#">
-			  <div class="notification__icon-wrapper">
-				<div class="notification__icon">
-				  <i class="material-icons">&#xE8D1;</i>
-				</div>
-			  </div>
-			  <div class="notification__content">
-				<span class="notification__category">Note e comunicazioni</span>
-				<p>Hai una nota 
-				  <span class="text-danger text-semibold">disciplinare</span></p>
-			  </div>
-			</a>
-			<a class="dropdown-item notification__all text-center" href="#">Visualizza tutte le notifiche </a>
-		  </div>';
 }
 
 function MostraAlertPasswordErrata()

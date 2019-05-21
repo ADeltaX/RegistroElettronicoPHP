@@ -69,7 +69,6 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                   <span>Dashboard</span>
                 </a>
               </li>
-              <?php StampaNavItems($tipoutente); ?>
             </ul>
           </div>
         </aside>
@@ -91,10 +90,6 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="nav-link-icon__wrapper">
-                      <i class="material-icons text-white">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-warning">4</span>
-                    </div>
                   </a>
                   <?php StampaNotificheEsempio(); ?>
                 </li>

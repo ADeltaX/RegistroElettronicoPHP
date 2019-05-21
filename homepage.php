@@ -15,7 +15,6 @@ $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
 $nomepagina = "homepage";
-
 ?>
 
 <!doctype html>
@@ -80,12 +79,7 @@ $nomepagina = "homepage";
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="nav-link-icon__wrapper">
-                      <i class="material-icons text-white">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-warning">4</span>
-                    </div>
                   </a>
-                  <?php StampaNotificheEsempio(); ?>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +90,7 @@ $nomepagina = "homepage";
                       if ($nome != null && $cognome != null)
                       {
                         if ($tipoutente == 2) //Genitore
-                          echo "Genitore per ";
+                          echo "Genitore di ";
                         echo "$cognome $nome";
                       }
                     ?>
