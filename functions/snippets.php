@@ -18,7 +18,7 @@ function StampaAccentCSS($tipoutente)
 function StampaNavItems($tipoutente, $nomepagina)
 {
 	echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "homepage" ? "active" : "").'" href="/RegistroElettronicoPHP/homepage.php">
-		<i class="material-icons">edit</i><span>Dashboard</span></a></li>';
+		<i class="material-icons">home</i><span>Dashboard</span></a></li>';
 
 	//APPELLO
 	if ($tipoutente == 1) //professore
@@ -280,6 +280,33 @@ function StampaNotificheEsempio()
 			</a>
 			<a class="dropdown-item notification__all text-center" href="#">Visualizza tutte le notifiche </a>
 		  </div>';
+}
+
+function MostraAlertPasswordErrata()
+{
+	echo '<div class="alert alert-danger alert-dismissible fade show mb-0" style="font-size: 20px" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true" style="font-size: 32px">×</span>
+					</button>
+					<div class="mr-4">
+						<i class="fa fa-exclamation-triangle mx-2" ></i>
+						<strong>Attenzione!</strong> 
+						La password è errata! Nessuna modifica è stata apportata al sistema.
+					</div>
+				</div>';
+}
+
+function MostraAlertSuccesso()
+{
+	echo '<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<div class="mr-4">
+						<i class="fa fa-info mx-2" ></i>
+						Le modifiche sono state effettuate con successo!
+					</div>
+				</div>';
 }
 
 ?>

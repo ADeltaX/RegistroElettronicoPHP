@@ -1,8 +1,10 @@
 <?php
 
+$pathfunctions = $_SERVER['DOCUMENT_ROOT'].'/RegistroElettronicoPHP/functions/';
+require($pathfunctions.'func.php');
+
 if (isset($_POST['submit'])) 
 {
-	require('./functions/func.php');
 	$db = Connect();
   
 	$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING); 
@@ -32,40 +34,21 @@ if (isset($_POST['submit']))
 				break;
 		}
 
-		$stmt = $db->prepare('SELECT * FROM utenti WHERE Utente = ? AND TipoUtente = ?');
-		$stmt->bind_param('si', $username, $tipoutente); //'s' => string, 'i' => integer --> evita l'SQL injection
-		$stmt->execute();
-		
-		$result = $stmt->get_result();
-		$resultCheck = mysqli_num_rows($result);
-		
-		if ($resultCheck < 1) 
+		$result = ValidateUsernamePassword($db, $username, $tipoutente, $password);
+		if ($result == false)
 		{
 			header("Location: /RegistroElettronicoPHP/index.php?login=error");
 			exit();
 		}
-		else
+		elseif ($result == true)
 		{
-			if ($row = mysqli_fetch_assoc($result))
-			{
-				$hashedPwdCheck = password_verify($_POST['password'], $row['Password']);
-		 
-				if ($hashedPwdCheck == false)
-				{
-					header("Location: /RegistroElettronicoPHP/index.php?login=error");
-					exit();
-				}
-				elseif ($hashedPwdCheck == true)
-				{
-					//log in
-					session_start();
+			//log in
+			session_start();
 
-					$_SESSION['id'] = $username;
-					$_SESSION['tipoutente'] = $tipoutente;
-					header("Location: /RegistroElettronicoPHP/homepage.php");
-					exit();
-				}
-			}
+			$_SESSION['id'] = $username;
+			$_SESSION['tipoutente'] = $tipoutente;
+			header("Location: /RegistroElettronicoPHP/homepage.php");
+			exit();
 		}
 	}
 }

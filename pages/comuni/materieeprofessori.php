@@ -121,6 +121,56 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               </div>
             </div>
             <div class="container" data-masonry='{ "itemSelector": ".card" }'>
+              <?php
+                $table = '<div class="row">
+                  <div class="col">
+                    <div class="card card-small mb-4">
+                      <div class="card-header border-bottom">
+                        <h6 class="m-0">I tuoi voti</h6>
+                      </div>
+                      <div class="card-body p-0 pb-3 text-center">
+                        <table class="table mb-0">
+                          <thead class="bg-light">
+                            <tr>
+                              <th scope="col" class="border-0">Materia</th>
+                              <th scope="col" class="border-0">Professore</th>
+                              <th scope="col" class="border-0">Data</th>
+                              <th scope="col" class="border-0">Voto</th>
+                            </tr>
+                          </thead>
+                          <tbody>';
+
+              $result = mysqli_query($db,"  SELECT materie.Descrizione, voti.Data, voti.Voto, gestutenti.Nome, gestutenti.Cognome
+                                            FROM Voti 
+                                            INNER JOIN materie ON voti.IdMateria=materie.IdMateria 
+                                            INNER JOIN professori ON voti.IdProfessore=professori.IdProfessore
+                                            INNER JOIN gestutenti ON gestutenti.Utente=professori.Utente
+                                            INNER JOIN studenti ON voti.Studente=studenti.Studente 
+                                            WHERE studenti.Utente='".$id."' 
+                                            ORDER BY materie.IdMateria, voti.Data");
+              $body = "";
+              while($row = mysqli_fetch_array($result))
+              {
+                  //. "</td><td>" . $row['Tipo']
+                  $body .= "<tr><td>". $row['Descrizione'] . "</td><td>" . $row['Cognome'] . " " . $row['Nome']  . "</td><td>" . $row['Data']  . "</td><td>" . $row['Voto'] . "</td></tr>";
+              }
+
+              if (!empty($body))
+              {
+                $end = '</tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>';
+                echo $table.$body.$end;
+              }
+              else
+                echo '<div class="alert alert-primary" role="alert">Non hai alcun voto!</div>';
+                
+            ?>
+
+
               <table class="table table-striped">
                     <thead>
                       <tr>

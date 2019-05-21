@@ -14,7 +14,7 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
-$nomepagina = "voti";
+$nomepagina = "assenze";
 
 if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
 {
@@ -30,7 +30,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>FAKElog homepage</title>
+    <title>FAKElog Assenze</title>
     <meta name="description" content="FAKElog Registro Elettronico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -89,7 +89,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                       if ($nome != null && $cognome != null)
                       {
                         if ($tipoutente == 2) //Genitore - TODO, FIX
-                          echo "Genitore per ";
+                          echo "Genitore di ";
                         echo "$cognome $nome";
                       }
                     ?>
@@ -120,12 +120,56 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                 <h3 class="page-title">Assenze</h3>
               </div>
             </div>
-            <div class="container" data-masonry='{ "itemSelector": ".card" }'>
+            <div class="container">
+              <?php
+              $table = '<div class="row">
+                <div class="col">
+                  <div class="card card-small mb-4">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">I tuoi voti</h6>
+                    </div>
+                    <div class="card-body p-0 pb-3 text-center">
+                      <table class="table mb-0">
+                        <thead class="bg-light">
+                          <tr>
+                            <th scope="col" class="border-0">Data</th>
+                            <th scope="col" class="border-0">Tipo assenza</th>
+                          </tr>
+                        </thead>
+                        <tbody>';
+
+              $result = mysqli_query($db,"  SELECT assenze.Data, assenze.TipoAssenza
+                                            FROM assenze 
+                                            INNER JOIN studenti ON assenze.Studente=studenti.Studente 
+                                            WHERE studenti.Utente='".$id."'
+                                            ORDER BY assenze.Data");
+              $body = "";
+              while($row = mysqli_fetch_array($result))
+              {
+                  //. "</td><td>" . $row['Tipo']
+                   $body .= "<tr><td>". $row['Data'] . "</td><td>" . $row['TipoAssenza'] . "</td></tr>";
+              }
+
+              if (!empty($body))
+              {
+                $end = '</tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>';
+                echo $table.$body.$end;
+              }
+              else
+                echo '<div class="alert alert-primary" role="alert">Non hai alcuna assenza!</div>';
+              
+              ?>
+
             </div>
             <!-- End Page Header -->
           </div>
           <footer class="main-footer footer d-flex p-2 px-3 bg-white">
-			<?php StampaFooter(); ?>
+			      <?php StampaFooter(); ?>
           </footer>
         </main>
       </div>

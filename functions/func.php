@@ -72,6 +72,55 @@ function GetPercorsoFoto($db, $utente)
 	echo "/RegistroElettronicoPHP/images/avatars/default.png";
 }
 
+function ValidateUsernamePassword($db, $username, $tipoutente, $password)
+{
+    $stmt = $db->prepare('SELECT * FROM utenti WHERE Utente = ? AND TipoUtente = ?');
+    $stmt->bind_param('si', $username, $tipoutente); //'s' => string, 'i' => integer --> evita l'SQL injection
+    $stmt->execute();
+    
+    $result = $stmt->get_result();
+    $resultCheck = mysqli_num_rows($result);
+    
+    if ($resultCheck < 1) 
+    {
+        return false;
+    }
+    else
+    {
+        if ($row = mysqli_fetch_assoc($result))
+        {
+            $hashedPwdCheck = password_verify($_POST['password'], $row['Password']);
+            return $hashedPwdCheck;
+        }
+    }
+}
 
+function ValidatePasswordProfessore($db, $idprofessore, $password)
+{
+    if (empty($password))
+        return false;
+
+
+    $stmt = $db->prepare('SELECT professori.Utente, password FROM utenti, professori
+    WHERE professori.IdProfessore = ? AND professori.Utente = utenti.Utente');
+    $stmt->bind_param('s', $idprofessore);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck < 1) 
+    {
+        return false;
+    }
+    else
+    {
+        if ($row = mysqli_fetch_assoc($result))
+        {
+            $hashedPwdCheck = password_verify($password, $row['password']);
+            return $hashedPwdCheck;
+        }
+    }
+}
 
 ?>

@@ -14,7 +14,7 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
-$nomepagina = "appello";
+$nomepagina = "assenze";
 
 if ($tipoutente != 1) //Se non è un professore riportalo all'homepage
 {
@@ -42,24 +42,29 @@ if (isset($_POST['password']))
       $val_san = filter_var($value, FILTER_SANITIZE_STRING);
 
       //TODO, POSSIBILE BYPASS/SQL INJECTION.
-      if (is_numeric($key_san))
-      {
-        if ($val_san == "assente")
-        {
-          $stmt = $db->prepare('INSERT INTO `assenze` (`Studente`, `Classe`, `Anno`, `Data`, `TipoAssenza`) 
-                                SELECT ?, studenti.Classe, studenti.Anno, now(), "Assente"
-                                FROM studenti
-                                WHERE studenti.Studente = ?');
-          $stmt->bind_param('ii', $key_san, $key_san); //'s' => string, 'i' => integer --> evita l'SQL injection
-          $stmt->execute();
+      // if (is_numeric($key_san) && !empty($val_san))
+      // {
+      //   $stmt = $db->prepare('INSERT INTO `voti`(`Studente`, `Classe`, `Anno`, `Data`, `Voto`, `IdMateria`, `IdProfessore`)
+      //                         SELECT ?, studenti.Classe, studenti.Anno, now(), ?, ?, ?
+      //                         FROM studenti
+      //                         WHERE studenti.Studente = ?');
+      //   $stmt->bind_param('isiii', $key_san, $val_san, $idmateria, $idprofessore, $key_san);
+      //   $stmt->execute();
 
-          //Dovremmo controllare se l'insert è avvenuto con successo... troppo poco tempo per lavorarci su :\
-        }
-      }
+      //   //Dovremmo controllare se l'insert è avvenuto con successo... troppo poco tempo per lavorarci su :\
+      // }
     }
     $mostrasuccesso = true;
   }
 }
+
+// ooooooooooooo     .oooooo.     oooooooooo.       .oooooo.   
+// 8'   888   `8    d8P'  `Y8b    `888'   `Y8b     d8P'  `Y8b  
+//      888        888      888    888      888   888      888 
+//      888        888      888    888      888   888      888 
+//      888        888      888    888      888   888      888 
+//      888        `88b    d88'    888     d88'   `88b    d88' 
+//     o888o        `Y8bood8P'    o888bood8P'      `Y8bood8P'  
 
 ?>
 
@@ -68,7 +73,7 @@ if (isset($_POST['password']))
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>FAKElog Appello</title>
+    <title>FAKElog Gestione assenze</title>
     <meta name="description" content="FAKElog Registro Elettronico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -158,14 +163,14 @@ if (isset($_POST['password']))
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Appello</h3>
+                <h3 class="page-title">Voti</h3>
               </div>
             </div>
-            <form action="appello.php" method="POST" class="container mb-4">
+            <form action="voti.php" method="POST" class="container mb-4">
               <div class="col-lg-12">
                 <div class="card card-small blog-comments">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Presenze</h6>
+                    <h6 class="m-0">Inserisci voti</h6>
                   </div>
                   
                   <?php
@@ -197,20 +202,48 @@ if (isset($_POST['password']))
                                 <div class="blog-comments__meta text-muted">
                                   <a class="text-secondary" href="#">'.$row['Nome'].' '.$row['Cognome'].'</a>
                                 </div>
-                                <div class="btn-group btn-group-toggle btn-group-md ml-auto mt-3" data-toggle="buttons">
-                                  <label class="btn btn-md btn-white active">
-                                    <input type="radio" name="'.$row['Studente'].'" value="presente" autocomplete="off" checked>
-                                    <span class="text-secondary">
-                                      <i class="material-icons">check</i>
-                                    </span> Presente 
-                                  </label>
-                                  <label class="btn btn-md btn-white">
-                                    <input type="radio" name="'.$row['Studente'].'" value="assente" autocomplete="off">
-                                    <span class="text-secondary">
-                                      <i class="material-icons">clear</i>
-                                    </span> Assente 
-                                  </label>
-                                </div>
+                                <select id="inputState" name='.$row['Studente'].' class="form-control  ml-auto mt-3" style="max-width: 164px;">
+                                  <option value="" selected>Scegli un voto...</option>
+                                  <option value="NC">NC</option>
+                                  <option value="A">A</option>
+                                  <option value="1.00">1</option>
+                                  <option value="1.25">1,25</option>
+                                  <option value="1.50">1,5</option>
+                                  <option value="1.75">1,75</option>
+                                  <option value="2.00">2</option>
+                                  <option value="2.25">2,25</option>
+                                  <option value="2.50">2,5</option>
+                                  <option value="2.75">2,75</option>
+                                  <option value="3.00">3</option>
+                                  <option value="3.25">3,25</option>
+                                  <option value="3.50">3,5</option>
+                                  <option value="3.75">3,75</option>
+                                  <option value="4.00">4</option>
+                                  <option value="4.25">4,25</option>
+                                  <option value="4.5">4,5</option>
+                                  <option value="4.75">4,75</option>
+                                  <option value="5.00">5</option>
+                                  <option value="5.25">5,25</option>
+                                  <option value="5.50">5,5</option>
+                                  <option value="5.75">5,75</option>
+                                  <option value="6.00">6</option>
+                                  <option value="6.25">6,25</option>
+                                  <option value="6.50">6,5</option>
+                                  <option value="6.75">6,75</option>
+                                  <option value="7.00">7</option>
+                                  <option value="7.25">7,25</option>
+                                  <option value="7.50">7,5</option>
+                                  <option value="7.75">7,75</option>
+                                  <option value="8.00">8</option>
+                                  <option value="8.25">8,25</option>
+                                  <option value="8.50">8,5</option>
+                                  <option value="8.75">8,75</option>
+                                  <option value="9.00">9</option>
+                                  <option value="9.25">9,25</option>
+                                  <option value="9.50">9,5</option>
+                                  <option value="9.75">9,75</option>
+                                  <option value="10.00">10</option>
+                                </select>
                               </div>
                             </div>';
                     }

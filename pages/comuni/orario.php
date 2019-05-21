@@ -14,7 +14,7 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
-$nomepagina = "voti";
+$nomepagina = "orario";
 
 if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
 {
