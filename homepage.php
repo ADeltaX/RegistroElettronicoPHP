@@ -15,6 +15,20 @@ $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
 $nomepagina = "homepage";
+
+if ($tipoutente == 2) //Se è un genitore
+{
+  $result = mysqli_query($db,"SELECT utenti.Utente
+  FROM genitorestudente, studenti, utenti
+  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
+  
+  if ($row = mysqli_fetch_array($result))
+  {
+     $id = $row['Utente'];
+  }
+                                
+}
+
 ?>
 
 <!doctype html>

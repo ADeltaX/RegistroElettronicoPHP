@@ -6,6 +6,8 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['tipoutente'])) {
 	exit();
 }
 
+header('Content-Type: text/html; charset=utf-8');
+
 $pathfunctions = $_SERVER['DOCUMENT_ROOT'].'/RegistroElettronicoPHP/functions/';
 
 require($pathfunctions.'func.php');
@@ -15,6 +17,19 @@ $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
 $nomepagina = "comunicazioni";
+
+if ($tipoutente == 2) //Se è un genitore
+{
+  $result = mysqli_query($db,"SELECT utenti.Utente
+  FROM genitorestudente, studenti, utenti
+  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
+  
+  if ($row = mysqli_fetch_array($result))
+  {
+     $id = $row['Utente'];
+  }
+                                
+}
 
 ?>
 
@@ -109,19 +124,32 @@ $nomepagina = "comunicazioni";
               </div>
             </div>
 
-              <div class="md-container">
-                <div class="col-5 master">
-                    <div class="master-item active-item" onclick="select(this)">Comunicazione 1</div>
-                    <div class="master-item" onclick="select(this)">Comunicazione 2</div>
-                    <div class="master-item" onclick="select(this)">Comunicazione 3</div>
-                    <div class="master-item" onclick="select(this)">Comunicazione 4</div>
-                </div>
-                <div class="col-7 detail">
-                    <button id="back-btn" class="hidden-md" onclick="back()">< Back</button>
-                    <h1 class="detail-title text-center">Comunicazione 1</h1>
+              <?php
 
-                </div>
-              </div>
+                $table = '<div class="md-container"><div class="col-4 master" style="padding-right: 0px;">';
+
+                $result = mysqli_query($db,"SELECT comunicazioni.Data, comunicazioni.Titolo, comunicazioni.Contenuto
+                                        FROM comunicazioni, (SELECT IdComunicazione FROM utentecomunicazione WHERE Utente = '".$id."') as TAB
+                                        WHERE comunicazioni.IdComunicazione = TAB.IdComunicazione");
+                $body = "";
+                while($row = mysqli_fetch_array($result))
+                {
+                    $body .= '<div class="master-item" onclick="select(this, \''.$row['Data'].'\', \''.$row['Contenuto'].'\')">'.$row['Titolo'].'</div>';
+                }
+
+                if (!empty($body))
+                {
+                  $end = $end = '</div><div class="col-8 detail">
+                  <button id="back-btn" class="hidden-md" onclick="back()">< Back</button>
+                  <h3 class="detail-title text-center">Seleziona un messaggio!</h3>
+                  <p id="detail-content"></p></div></div>';
+                  echo $table.$body.$end;
+                }
+                else
+                  echo '<div class="alert alert-primary" role="alert">Non hai nessuna comunicazione!</div>';
+                  
+
+              ?>
 
             <!-- End Page Header -->
           </div>

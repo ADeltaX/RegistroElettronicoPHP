@@ -169,24 +169,23 @@ ol {
 /* Master Detail Page  */
 
 .master-item {
-  font-size: 24px;
+  font-size: 16px;
   border-bottom: 2px solid #4CD4B0;
-  padding: 15px;
+  padding: 12px;
   background: white;
-  color:#4CD4B0; 
+  color:#555; 
 }
 
 .text-center {
   text-align: center;
 }
 .master-item:hover, .active-item {
-  background: #4CD4B0;
+  background: #555;
   color: white;
   cursor: pointer
 }
 
 .master {
-  padding: 25px;
   border:none;
   box-sizing: border-box;
   height: 100vh;
@@ -207,7 +206,8 @@ ol {
 }
 
 .detail{
-  padding: 25px;
+  padding: 8px;
+  padding-top: 24px;
   box-sizing: border-box;
   position: absolute;
   z-index: 11;
@@ -263,6 +263,6 @@ ol {
   }
 
   .master{
-      border-right: 3px solid #4CD4B0;
+      border-right: 2px solid #555;
   }
 }

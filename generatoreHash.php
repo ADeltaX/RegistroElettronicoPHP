@@ -7,7 +7,7 @@
 <form action ="generatoreHash.php" method="post">
 <label for = "Password"> Password: </label><br>
 <input type="password" name="password" placeholder="Inserire la Password" maxlength="15"> <br> <br>
-<input type="submit" value="HASHA !"> </form>
+<input type="submit" value="HASHA!"> </form>
 
 
 <?php 

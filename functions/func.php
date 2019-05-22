@@ -7,6 +7,11 @@ function Connect()
     $pass = "";
     $database = "db_scuola";
     $db = mysqli_connect($host, $user, $pass, $database);
+    //mysql_query("SET character_set_results=utf8", $db);
+    mb_language('uni'); 
+    mb_internal_encoding('UTF-8');
+    //mysql_select_db($argDB, $db);
+    //mysql_query("set names 'utf8'",$db);
     return $db;
 }
 
@@ -89,8 +94,7 @@ function ValidateUsernamePassword($db, $username, $tipoutente, $password)
     {
         if ($row = mysqli_fetch_assoc($result))
         {
-            $hashedPwdCheck = password_verify($_POST['password'], $row['Password']);
-            return $hashedPwdCheck;
+            return password_verify($_POST['password'], $row['Password']);
         }
     }
 }
@@ -117,8 +121,7 @@ function ValidatePasswordProfessore($db, $idprofessore, $password)
     {
         if ($row = mysqli_fetch_assoc($result))
         {
-            $hashedPwdCheck = password_verify($password, $row['password']);
-            return $hashedPwdCheck;
+            return password_verify($password, $row['password']);
         }
     }
 }

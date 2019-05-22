@@ -14,19 +14,54 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
-$nomepagina = "orario";
+$nomepagina = "note";
 
-if ($tipoutente == 2) //Se è un genitore
+if ($tipoutente != 1) //Se non è un professore riportalo all'homepage
 {
-  $result = mysqli_query($db,"SELECT utenti.Utente
-  FROM genitorestudente, studenti, utenti
-  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
-  
-  if ($row = mysqli_fetch_array($result))
+  //volendo si può inviare un 403 forbidden....
+  header("Location: /RegistroElettronicoPHP/homepage.php");
+  exit();
+}
+
+$idmateria = 4;
+$idprofessore = 1;
+$mostraerrore = false;
+$mostrasuccesso = false;
+
+if (isset($_POST['password']))
+{
+  $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+  $result = ValidatePasswordProfessore($db, $idprofessore, $password);
+  if (!$result)
+    $mostraerrore = true;
+  else
   {
-     $id = $row['Utente'];
+    $nota = "";
+    foreach($_POST as $key => $value)
+      if ($key == "nota")
+        $nota = filter_var($value, FILTER_SANITIZE_STRING);
+
+    foreach($_POST as $key => $value)
+    {
+
+      $key_san = filter_var($key, FILTER_SANITIZE_STRING);
+      $val_san = filter_var($value, FILTER_SANITIZE_STRING);
+
+      //TODO, POSSIBILE BYPASS/SQL INJECTION.
+      if (is_numeric($key_san) && !empty($val_san))
+      {
+        $stmt = $db->prepare('INSERT INTO `annotazioni`(`Studente`, `Classe`, `Anno`, `Data`, `Descrizione`, `IdMateria`, `IdProfessore`, `Tipologia`) 
+        SELECT ?, studenti.Classe, studenti.Anno, now(), ?, ?, ?, "Nota Disciplinare"
+        FROM studenti
+        WHERE studenti.Studente = ?');
+        $stmt->bind_param('isiii', $key_san, $nota, $idmateria, $idprofessore, $key_san);
+        $stmt->execute();
+
+        //Dovremmo controllare se l'insert è avvenuto con successo... troppo poco tempo per lavorarci su :\
+      }
+    }
+    $mostrasuccesso = true;
   }
-                                
 }
 
 ?>
@@ -36,7 +71,7 @@ if ($tipoutente == 2) //Se è un genitore
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>FAKElog homepage</title>
+    <title>FAKElog Inserimento Note</title>
     <meta name="description" content="FAKElog Registro Elettronico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -88,11 +123,7 @@ if ($tipoutente == 2) //Se è un genitore
                     <?php
                       list($nome, $cognome) = GetNomeCognome($db, $id);
                       if ($nome != null && $cognome != null)
-                      {
-                        if ($tipoutente == 2) //Genitore - TODO, FIX
-                          echo "Genitore di ";
                         echo "$cognome $nome";
-                      }
                     ?>
                     </span>
                   </a>
@@ -112,126 +143,89 @@ if ($tipoutente == 2) //Se è un genitore
               </nav>
             </nav>
           </div>
+          <?php
+            if ($mostraerrore)
+              MostraAlertPasswordErrata();
+
+            if ($mostrasuccesso)
+              MostraAlertSuccesso();
+          ?>
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Orario Lezioni</h3>
+                <h3 class="page-title">Note</h3>
               </div>
             </div>
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <div class="card card-small mb-4">
-                    <div class="tabellaorario">
-                      <ol class="orario">
-                        <li class="spc"><time datetime="08:00">08:00</time></li>
-                        <li class="spc"><time datetime="09:00">09:00</time></li>
-                        <li class="spc"><time datetime="10:00">10:00</time></li>
-                        <li class="spc"><time datetime="11:00">11:00</time></li>
-                        <li class="spc"><time datetime="12:00">12:00</time></li>
-                        <li class="spc"><time datetime="13:00">13:00</time></li>
-                      </ol>
-                      <ol class="settimana">
-                        <li class="giorno">
-                          <span class="nome">Lunedì</span>
-                          <div class="ora ora_08 blu">
-                            <div class="title">Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
+            <form action="note.php" method="POST" class="container mb-4">
+              <div class="col-lg-12">
+                <div class="card card-small blog-comments">
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">Inserisci note disciplinari</h6>
+                  </div>
+                  
+                  <?php
+
+                  $stmt = $db->prepare('SELECT studenti.Studente, gestutenti.Nome, gestutenti.Cognome, gestutenti.PercorsoFoto FROM studenti, 
+                              (SELECT Classe, Anno FROM professorimaterie WHERE professorimaterie.IdProfessore = ? AND IdMateria = ?) AS tab,
+                              gestutenti
+                              WHERE studenti.Classe = tab.Classe AND studenti.Anno = tab.Anno AND studenti.Utente = gestutenti.Utente');
+                  $stmt->bind_param('ii', $idprofessore, $idmateria); //'s' => string, 'i' => integer --> evita l'SQL injection
+                  $stmt->execute();
+
+                  $result = $stmt->get_result();
+                  $resultCheck = mysqli_num_rows($result);
+
+                  if ($resultCheck < 1) 
+                  {
+                    header("Location: /RegistroElettronicoPHP/homepage.php?error=internal");
+                    exit();
+                  }
+                  else
+                  {
+                    while ($row = mysqli_fetch_assoc($result))
+                    {
+                      echo '<div class="card-body p-0 border-bottom">
+                              <div class="blog-comments__item d-flex p-3">
+                                <div class="blog-comments__avatar mr-3">
+                                  <img src="'.($row['PercorsoFoto'] != null ? "/RegistroElettronicoPHP/storage/photos/".$row['PercorsoFoto'] : "/RegistroElettronicoPHP/images/avatars/default.png").'" alt="User avatar">
+                                </div>
+                                <div class="blog-comments__meta text-muted">
+                                  <a class="text-secondary" href="#">'.$row['Nome'].' '.$row['Cognome'].'</a>
+                                </div>
+                                <div class="custom-control custom-checkbox ml-auto mt-3">
+                                <input type="checkbox" name="'.$row['Studente'].'" class="custom-control-input" id="cb_'.$row['Studente'].'"></input>
+                                <label class="custom-control-label" for="cb_'.$row['Studente'].'"></label>
+                                </div>
+                              </div>
+                            </div>';
+                    }
+                  }
+
+                  ?>
+                  <div class="card-footer">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">Scrivi la nota</h6>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                      <div class="form-group">
+                        <textarea name="nota" class="form-control" placeholder="Inserisci le note..."></textarea>
+                      </div>
+                      <div class="form-group mb-0">
+                        <div class="input-group mx-auto" style="max-width: 320px;">
+                          <input type="password" name="password" class="form-control" placeholder="Inserisci la password per confermare.">
+                          <div class="input-group-append">
+                            <input type="submit" class="btn btn-success" value="Conferma"></input>
                           </div>
-                          <div class="ora ora_09 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 verde">
-                            <div class="title">Italiano</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_11 arancione">
-                            <div class="title">Storia</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_12 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>TUT[02]</div>
-                          </div>
-                          <div class="ora ora_13 viola">
-                            <div class="title">Inglese</div>
-                            <div>TUT[02]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Martedì</span>
-                          <div class="ora ora_g_due ora_08 viola">
-                            <div class="title">Lab. Inglese</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 blu">
-                            <div class="title">Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_11 arancione">
-                            <div class="title">Storia</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_12 verde">
-                            <div class="title">Italiano</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Mercoledì</span>
-                          <div class="ora ora_g_due ora_09 rosso">
-                            <div class="title">Tedesco</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_g_tre ora_10 blu">
-                            <div class="title">Lab. Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_13 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Giovedì</span>
-                          <div class="ora ora_08 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>TUT[02]</div>
-                          </div>
-                          <div class="ora ora_09 blu">
-                            <div class="title">Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 arancione">
-                            <div class="title">Storia</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_12 viola">
-                            <div class="title">Inglese</div>
-                            <div>TUT[02]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Venerdì</span>
-                          <div class="ora ora_g_due ora_08 verde">
-                            <div class="title">Italiano</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 rosso">
-                            <div class="title">Tedesco</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                        </li>
-                      </ol>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
             <!-- End Page Header -->
           </div>
           <footer class="main-footer footer d-flex p-2 px-3 bg-white">

@@ -14,8 +14,22 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
+$nomepagina = "note";
 
-if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
+if ($tipoutente == 2) //Se è un genitore
+{
+  $result = mysqli_query($db,"SELECT utenti.Utente
+  FROM genitorestudente, studenti, utenti
+  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
+  
+  if ($row = mysqli_fetch_array($result))
+  {
+     $id = $row['Utente'];
+  }
+                                
+}
+
+if ($tipoutente == 3 || $tipoutente == 1) //Se è uno studente/professore riportalo all'homepage
 {
   //volendo si può inviare un 403 forbidden....
   header("Location: /RegistroElettronicoPHP/homepage.php");
@@ -29,15 +43,15 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>FAKElog homepage</title>
+    <title>FAKElog Assenze</title>
     <meta name="description" content="FAKElog Registro Elettronico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" data-version="1.1.0" href="/RegistroElettronicoPHP/styles/shards-dashboards.1.1.0.css">
+    <?php StampaAccentCSS($tipoutente); ?>
     <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/extras.1.1.0.min.css">
-    <link rel="stylesheet" href="/RegistroElettronicoPHP/css/commonstyle.css">
+    <link rel="stylesheet" href="/RegistroElettronicoPHP/styles/commonstyle.css">
   </head>
   <body class="h-100">
     <div class="container-fluid">
@@ -45,7 +59,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
         <!-- Main Sidebar -->
         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
           <div class="main-navbar">
-            <nav class="navbar align-items-stretch navbar-light bg-blue flex-md-nowrap p-0">
+            <nav class="navbar align-items-stretch navbar-light bg-navbar flex-md-nowrap p-0">
               <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
                 <div class="d-table m-auto">
                   <span class="d-none d-md-inline ml-1 text-white">Registro Elettronico</span>
@@ -56,42 +70,23 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               </a>
             </nav>
           </div>
-          <form action="#" class="main-sidebar__search w-100 d-sm-flex d-md-none d-lg-none">
-            <div class="input-group input-group-seamless ml-3">
-              <input class="ml-3 navbar-search form-control bg-transparent text-dark" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-            </div>
-          </form>
+          <div class="w-100 d-md-flex d-lg-flex"></div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="homepage.php">
-                  <i class="material-icons">edit</i>
-                  <span>Dashboard</span>
-                </a>
-              </li>
+              <?php StampaNavItems($tipoutente, $nomepagina); ?>
             </ul>
           </div>
         </aside>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-          <div class="main-navbar sticky-top bg-lightblue">
+          <div class="main-navbar sticky-top bg-navbar-light">
             <!-- Main Navbar -->
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-              <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                <div class="input-group input-group-seamless ml-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-search text-white"></i>
-                    </div>
-                  </div>
-                  <input class="navbar-search form-control bg-transparent text-white" type="text" placeholder="Cerca qualcosa..." aria-label="Search">
-                </div>
-              </form>
+              <div class="w-100 d-md-flex d-lg-flex"></div>
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   </a>
-                  <?php StampaNotificheEsempio(); ?>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -102,7 +97,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                       if ($nome != null && $cognome != null)
                       {
                         if ($tipoutente == 2) //Genitore - TODO, FIX
-                          echo "Genitore per ";
+                          echo "Genitore di ";
                         echo "$cognome $nome";
                       }
                     ?>
@@ -130,17 +125,60 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Impostazioni</h3>
+                <h3 class="page-title">Note</h3>
               </div>
             </div>
-            <div class="container" data-masonry='{ "itemSelector": ".card" }'>
-            
-            
+            <div class="container">
+              <?php
+              $table = '<div class="row">
+                <div class="col">
+                  <div class="card card-small mb-4">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">Le tue note</h6>
+                    </div>
+                    <div class="card-body p-0 pb-3 text-center">
+                      <table class="table mb-0">
+                        <thead class="bg-light">
+                          <tr>
+                            <th scope="col" class="border-0">Contenuto nota</th>
+                            <th scope="col" class="border-0">Data</th>
+                            <th scope="col" class="border-0">Tipo nota</th>
+                          </tr>
+                        </thead>
+                        <tbody>';
+
+              $result = mysqli_query($db,"  SELECT annotazioni.Descrizione, annotazioni.Data, annotazioni.Tipologia
+                                            FROM annotazioni 
+                                            INNER JOIN studenti ON annotazioni.Studente=studenti.Studente 
+                                            WHERE studenti.Utente='".$id."'
+                                            ORDER BY annotazioni.Data");
+              $body = "";
+              while($row = mysqli_fetch_array($result))
+              {
+                  //. "</td><td>" . $row['Tipo']
+                   $body .= "<tr><td>" . $row['Descrizione'] . "</td><td>". $row['Data'] . "</td><td>" . $row['Tipologia'] . "</td></tr>";
+              }
+
+              if (!empty($body))
+              {
+                $end = '</tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>';
+                echo $table.$body.$end;
+              }
+              else
+                echo '<div class="alert alert-primary" role="alert">Non hai nessuna nota!</div>';
+              
+              ?>
+
             </div>
             <!-- End Page Header -->
           </div>
           <footer class="main-footer footer d-flex p-2 px-3 bg-white">
-			<?php StampaFooter(); ?>
+			      <?php StampaFooter(); ?>
           </footer>
         </main>
       </div>

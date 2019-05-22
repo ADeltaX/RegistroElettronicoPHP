@@ -54,7 +54,7 @@ if (isset($_POST['submit']))
 }
 else
 {
-	header("index.php?login=error");
+	header("Location: /RegistroElettronicoPHP/index.php?login=error");
 	exit();
 }
 

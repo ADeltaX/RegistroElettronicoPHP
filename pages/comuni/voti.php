@@ -16,7 +16,20 @@ $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
 $nomepagina = "voti";
 
-if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
+if ($tipoutente == 2) //Se è un genitore dammi i voti di mio figlio
+{
+  $result = mysqli_query($db,"SELECT utenti.Utente
+  FROM genitorestudente, studenti, utenti
+  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
+  
+  if ($row = mysqli_fetch_array($result))
+  {
+     $id = $row['Utente'];
+  }
+                                
+}
+
+if ($tipoutente == 1) //Se è un professore riportalo all'homepage
 {
   //volendo si può inviare un 403 forbidden....
   header("Location: /RegistroElettronicoPHP/homepage.php");
@@ -30,7 +43,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>FAKElog homepage</title>
+    <title>FAKElog Voti</title>
     <meta name="description" content="FAKElog Registro Elettronico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">

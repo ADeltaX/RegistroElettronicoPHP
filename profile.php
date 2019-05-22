@@ -16,6 +16,19 @@ $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
 $nomepagina = "profile";
 
+if ($tipoutente == 2) //Se è un genitore
+{
+  $result = mysqli_query($db,"SELECT utenti.Utente
+  FROM genitorestudente, studenti, utenti
+  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
+  
+  if ($row = mysqli_fetch_array($result))
+  {
+     $id = $row['Utente'];
+  }
+                                
+}
+
 ?>
 
 <!doctype html>
@@ -105,12 +118,12 @@ $nomepagina = "profile";
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Funzionalità</h3>
+                <h3 class="page-title">Profilo</h3>
               </div>
             </div>
             <div class="container" data-masonry='{ "itemSelector": ".card" }'>
-                            <div class="card card-small mb-4 pt-3" style="max-width: 320px; margin-right: 24px">
-                  <div class="card-header border-bottom text-center">
+                <div class="card card-small mb-4 pt-3" style="min-width: 320px; margin-right: 24px">
+                  <div class="text-center">
                     <div class="mb-3 mx-auto">
                       <img class="rounded-circle" src="<?php GetPercorsoFoto($db, $id); ?>" alt="User Avatar" width="110">
                     </div>
@@ -133,12 +146,30 @@ $nomepagina = "profile";
                         echo "Professore";
                     ?></span>
                   </div>
-                  <ul class="list-group list-group-flush">
+                  <!-- <ul class="list-group list-group-flush">
                     <li class="list-group-item p-4">
-                      <strong class="text-muted d-block mb-2">Description</strong>
-                      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-12">
+                            <label for="feFirstName">Password corrente</label>
+                            <input type="text" readonly class="form-control" placeholder="Password corrente">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-12">
+                            <label for="feFirstName">Nuova password</label>
+                            <input type="text" readonly class="form-control" placeholder="Nuova password">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-12">
+                            <label for="feFirstName">Conferma password</label>
+                            <input type="text" readonly class="form-control" placeholder="Conferma nuova password">
+                          </div>
+                        </div>
+                      </form>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
@@ -178,15 +209,15 @@ $nomepagina = "profile";
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="feInputCity">Città</label>
-                              <input type="text" readonly class="form-control">
+                              <input type="text" readonly class="form-control" value="Trento">
                             </div>
                             <div class="form-group col-md-4">
                               <label for="inputZip">Stato</label>
-                              <input type="text" readonly class="form-control" id="inputZip">
+                              <input type="text" readonly class="form-control" id="inputZip" value="Italia">
                             </div>
                             <div class="form-group col-md-2">
-                              <label for="inputZip">Zip</label>
-                              <input type="text" readonly class="form-control" id="inputZip">
+                              <label for="inputZip">C. Postale</label>
+                              <input type="text" readonly class="form-control" id="inputZip" value="38100">
                             </div>
                           </div>
                         </div>

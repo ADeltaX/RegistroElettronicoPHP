@@ -62,7 +62,7 @@ if (isset($_SESSION['id'])) {
 									echo '<div class="alert alert-warning alert-dismissible fade in" style="margin-top: -48px;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Attenzione!</strong> I campi sono vuoti!</div>';
 								}
 								else if ($result=="quitted") {
-									echo '<div class="alert alert-info alert-dismissible fade in" style="margin-top: -48px;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Logout effettuato con successo!</strong></div>';
+									echo '<div class="alert alert-info alert-dismissible fade in" style="margin-top: -48px;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Ti sei disconnesso!</strong></div>';
 								}
 								else if ($result=="expired") {
 									echo '<div class="alert alert-warning alert-dismissible fade in" style="margin-top: -48px;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Attenzione!</strong> La tua sessione è scaduta. Reinserisci le credenziali per accedere.</div>';

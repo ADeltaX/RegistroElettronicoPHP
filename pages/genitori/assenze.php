@@ -16,7 +16,20 @@ $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
 $nomepagina = "assenze";
 
-if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
+if ($tipoutente == 2) //Se è un genitore
+{
+  $result = mysqli_query($db,"SELECT utenti.Utente
+  FROM genitorestudente, studenti, utenti
+  WHERE genitorestudente.Genitore = '".$id."' and studenti.Studente = genitorestudente.Studente and studenti.Utente = utenti.Utente;");
+  
+  if ($row = mysqli_fetch_array($result))
+  {
+     $id = $row['Utente'];
+  }
+                                
+}
+
+if ($tipoutente == 3 || $tipoutente == 1) //Se è uno studente/professore riportalo all'homepage
 {
   //volendo si può inviare un 403 forbidden....
   header("Location: /RegistroElettronicoPHP/homepage.php");
@@ -121,7 +134,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                 <div class="col">
                   <div class="card card-small mb-4">
                     <div class="card-header border-bottom">
-                      <h6 class="m-0">I tuoi voti</h6>
+                      <h6 class="m-0">Le tue assenze</h6>
                     </div>
                     <div class="card-body p-0 pb-3 text-center">
                       <table class="table mb-0">

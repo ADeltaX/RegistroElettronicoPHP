@@ -34,48 +34,44 @@ function StampaNavItems($tipoutente, $nomepagina)
 		<i class="material-icons">edit</i><span>Inserisci voti</span></a></li>';
 
 	//ASSENZE
-	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "assenze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/assenze.php">
+	if ($tipoutente == 2) //genitore e studente
+	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "assenze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/genitori/assenze.php">
 		<i class="material-icons">clear</i><span>Assenze</span></a></li>';
-	else if ($tipoutente == 1) //professore
-	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "assenze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/assenze.php">
-		<i class="material-icons">clear</i><span>Gestione assenze</span></a></li>';
+	// else if ($tipoutente == 1) //professore
+	//   echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "assenze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/assenze.php">
+	// 	<i class="material-icons">clear</i><span>Gestione assenze</span></a></li>';
 
 	//COMUNICAZIONI - per tutti
 	echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "comunicazioni" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/comunicazioni.php">
 	<i class="material-icons">comment</i><span>Comunicazioni</span></a></li>';
 		
 	//ORARIO
-	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-		echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "orario" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/orario.php">
-		<i class="material-icons">access_time</i><span>Orario lezioni</span></a></li>';
-	else if ($tipoutente == 1) //professore
-		echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "orario" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/orario.php">
-		<i class="material-icons">query_builder</i><span>Orario</span></a></li>';
+	echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "orario" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/orario.php">
+	<i class="material-icons">access_time</i><span>Orario lezioni</span></a></li>';
 		
 	//MATERIE e PROFESSORI (+ classi per professore)
 	if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
 	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "materieeprofessori" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php">
 		<i class="material-icons">supervisor_account</i><span>Materie e Professori</span></a></li>';
-	else if ($tipoutente == 1) //professore
-	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "materieclassi" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/materieclassi.php">
-		<i class="material-icons">book</i><span>Materie e Classi</span></a></li>';
+	// else if ($tipoutente == 1) //professore
+	//   echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "materieclassi" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/materieclassi.php">
+	// 	<i class="material-icons">book</i><span>Materie e Classi</span></a></li>';
 
 	//NOTE e ANNOTAZIONI
 	if ($tipoutente == 2) //genitore
 	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "note" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/genitori/note.php">
-		<i class="material-icons">thumb_down_alt</i><span>Note e annotazioni</span></a></li>';
+		<i class="material-icons">thumb_down_alt</i><span>Note</span></a></li>';
 	else if ($tipoutente == 1) //professore
 	  echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "note" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/note.php">
-		<i class="material-icons">thumb_down_alt</i><span>Inserisci note</span></a></li>';
+		<i class="material-icons">thumb_down_alt</i><span>Note disciplinari</span></a></li>';
 
-	//UDIENZE
-	if ($tipoutente == 2) //genitore e studente
-		echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "udienze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/udienze.php">
-		<i class="material-icons">add_alert</i><span>Udienze</span></a></li>';
-	else if ($tipoutente == 1) //professore
-		echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "udienze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/udienze.php">
-		<i class="material-icons">add_alert</i><span>Gestione udienze</span></a></li>';
+	// //UDIENZE
+	// if ($tipoutente == 2) //genitore
+	// 	echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "udienze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/comuni/udienze.php">
+	// 	<i class="material-icons">add_alert</i><span>Udienze</span></a></li>';
+	// else if ($tipoutente == 1) //professore
+	// 	echo '<li class="nav-item"><a class="nav-link '.($nomepagina == "udienze" ? "active" : "").'" href="/RegistroElettronicoPHP/pages/professori/udienze.php">
+	// 	<i class="material-icons">add_alert</i><span>Gestione udienze</span></a></li>';
 
 	// //IMPOSTAZIONI
 	// if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
@@ -87,7 +83,7 @@ function StampaCardHomepage($tipoutente)
 {
 		//Card Appello
 		if ($tipoutente == 1) //professore
-			echo '<a href="appello.php"><div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/professori/appello.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">APPELLO</h5>
 								<p class="card-text">Da qui si può accedere nella sezione rigurdante all&rsquo;appello della tua classe.</p>
@@ -116,22 +112,22 @@ function StampaCardHomepage($tipoutente)
 
 
 		//Card Assenze
-		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<a href="/RegistroElettronicoPHP/pages/comuni/assenze.php"><div class="card card-item" style="width: 18rem;">
+		if ($tipoutente == 2) //genitore
+			echo '<a href="/RegistroElettronicoPHP/pages/genitori/assenze.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">ASSENZE</h5>
 								<p class="card-text">Da qui si può accedere nella sezione riguardante le tue assenze.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
-		else if ($tipoutente == 1) //professore
-			echo '<a href="/RegistroElettronicoPHP/pages/professori/assenze.php"><div class="card card-item" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">GESTIONE ASSENZE</h5>
-								<p class="card-text">Da qui si può accedere nella sezione riguardante l&rsquo;inserimento delle assenze.</p>
-								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
-							</div>
-						</div></a>';
+		// else if ($tipoutente == 1) //professore
+		// 	echo '<a href="/RegistroElettronicoPHP/pages/professori/assenze.php"><div class="card card-item" style="width: 18rem;">
+		// 					<div class="card-body">
+		// 						<h5 class="card-title">GESTIONE ASSENZE</h5>
+		// 						<p class="card-text">Da qui si può accedere nella sezione riguardante l&rsquo;inserimento delle assenze.</p>
+		// 						<div class="btn btn-secondary" style="float: right;">Visualizza</div>
+		// 					</div>
+		// 				</div></a>';
 
 
 		//Card COMUNICAZIONI
@@ -154,33 +150,23 @@ function StampaCardHomepage($tipoutente)
 
 
 		//Card ORARIO
-		if ($tipoutente == 2 || $tipoutente == 3) //genitore e studente
-			echo '<a href="/RegistroElettronicoPHP/pages/comuni/orario.php"><div class="card card-item" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">ORARIO</h5>
-								<p class="card-text">Da qui si può accedere nella sezione riguardante il tuo orario scolastico.</p>
-								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
-							</div>
-						</div></a>';
-		else if ($tipoutente == 1) //professore
-			echo '<a href="/RegistroElettronicoPHP/pages/professori/orario.php"><div class="card card-item" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">ORARIO</h5>
-								<p class="card-text">Da qui si può accedere nella sezione riguardante il tuo orario scolastico.</p>
-								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
-							</div>
-						</div></a>';
+		echo '<a href="/RegistroElettronicoPHP/pages/comuni/orario.php"><div class="card card-item" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">ORARIO</h5>
+							<p class="card-text">Da qui si può accedere nella sezione riguardante il tuo orario scolastico.</p>
+							<div class="btn btn-secondary" style="float: right;">Visualizza</div>
+						</div>
+					</div></a>';
 
-
-		//Card MATERIE E CLASSI
-		if ($tipoutente == 1) //professore
-			echo '<a href="/RegistroElettronicoPHP/pages/professori/materieeclassi.php"><div class="card card-item" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">MATERIE E CLASSI</h5>
-								<p class="card-text">Da qui si può accedere nella sezione riguardante le materie e le classi dell&rsquo;istituto.</p>
-								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
-							</div>
-						</div></a>';
+		// //Card MATERIE E CLASSI
+		// if ($tipoutente == 1) //professore
+		// 	echo '<a href="/RegistroElettronicoPHP/pages/professori/materieeclassi.php"><div class="card card-item" style="width: 18rem;">
+		// 					<div class="card-body">
+		// 						<h5 class="card-title">MATERIE E CLASSI</h5>
+		// 						<p class="card-text">Da qui si può accedere nella sezione riguardante le materie e le classi dell&rsquo;istituto.</p>
+		// 						<div class="btn btn-secondary" style="float: right;">Visualizza</div>
+		// 					</div>
+		// 				</div></a>';
 
 
 		//Card INSERISCI NOTE
@@ -199,7 +185,7 @@ function StampaCardHomepage($tipoutente)
 			echo '<a href="/RegistroElettronicoPHP/pages/comuni/materieeprofessori.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">MATERIE E PROFESSORI</h5>
-								<p class="card-text">Da qui si può accedere nella sezione riguardante le materie e le classi della tua classe.</p>
+								<p class="card-text">Da qui si può accedere nella sezione riguardante le materie ed i prof della tua classe.</p>
 								<div class="btn btn-secondary" style="float: right;">Visualizza</div>
 							</div>
 						</div></a>';
@@ -207,7 +193,7 @@ function StampaCardHomepage($tipoutente)
 
 		//Card NOTE
 		if ($tipoutente == 2) //genitore
-			echo '<a href="/RegistroElettronicoPHP/pages/comuni/notedisciplinari.php"><div class="card card-item" style="width: 18rem;">
+			echo '<a href="/RegistroElettronicoPHP/pages/genitori/note.php"><div class="card card-item" style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">NOTE DISCIPLINARI</h5>
 								<p class="card-text">Da qui si può accedere nella sezione riguardante le note disciplinari</p>
