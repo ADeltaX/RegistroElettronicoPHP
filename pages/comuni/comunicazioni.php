@@ -108,8 +108,21 @@ $nomepagina = "comunicazioni";
                 <h3 class="page-title">Comunicazioni</h3>
               </div>
             </div>
-            <div class="container" data-masonry='{ "itemSelector": ".card" }'>
-            </div>
+
+              <div class="md-container">
+                <div class="col-5 master">
+                    <div class="master-item active-item" onclick="select(this)">Comunicazione 1</div>
+                    <div class="master-item" onclick="select(this)">Comunicazione 2</div>
+                    <div class="master-item" onclick="select(this)">Comunicazione 3</div>
+                    <div class="master-item" onclick="select(this)">Comunicazione 4</div>
+                </div>
+                <div class="col-7 detail">
+                    <button id="back-btn" class="hidden-md" onclick="back()">< Back</button>
+                    <h1 class="detail-title text-center">Comunicazione 1</h1>
+
+                </div>
+              </div>
+
             <!-- End Page Header -->
           </div>
           <footer class="main-footer footer d-flex p-2 px-3 bg-white">
@@ -127,5 +140,6 @@ $nomepagina = "comunicazioni";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="/RegistroElettronicoPHP/scripts/extras.1.1.0.min.js"></script>
     <script src="/RegistroElettronicoPHP/scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="/RegistroElettronicoPHP/scripts/master-detail.js"></script>
   </body>
 </html>

@@ -14,7 +14,7 @@ require($pathfunctions.'snippets.php');
 $db = Connect();
 $id = $_SESSION['id'];
 $tipoutente = $_SESSION['tipoutente'];
-$nomepagina = "orario";
+$nomepagina = "template";
 
 if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
 {
@@ -73,7 +73,12 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               <ul class="navbar-nav flex-row ">
                 <li class="nav-item dropdown notifications">
                   <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-link-icon__wrapper">
+                      <i class="material-icons text-white">&#xE7F4;</i>
+                      <span class="badge badge-pill badge-warning">4</span>
+                    </div>
                   </a>
+                  <?php StampaNotificheEsempio(); ?>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -84,7 +89,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                       if ($nome != null && $cognome != null)
                       {
                         if ($tipoutente == 2) //Genitore - TODO, FIX
-                          echo "Genitore di ";
+                          echo "Genitore per ";
                         echo "$cognome $nome";
                       }
                     ?>
@@ -112,119 +117,11 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Dashboard</span>
-                <h3 class="page-title">Orario Lezioni</h3>
+                <h3 class="page-title">Funzionalità</h3>
               </div>
             </div>
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <div class="card card-small mb-4">
-                    <div class="tabellaorario">
-                      <ol class="orario">
-                        <li class="spc"><time datetime="08:00">08:00</time></li>
-                        <li class="spc"><time datetime="09:00">09:00</time></li>
-                        <li class="spc"><time datetime="10:00">10:00</time></li>
-                        <li class="spc"><time datetime="11:00">11:00</time></li>
-                        <li class="spc"><time datetime="12:00">12:00</time></li>
-                        <li class="spc"><time datetime="13:00">13:00</time></li>
-                      </ol>
-                      <ol class="settimana">
-                        <li class="giorno">
-                          <span class="nome">Lunedì</span>
-                          <div class="ora ora_08 blu">
-                            <div class="title">Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_09 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 verde">
-                            <div class="title">Italiano</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_11 arancione">
-                            <div class="title">Storia</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_12 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>TUT[02]</div>
-                          </div>
-                          <div class="ora ora_13 viola">
-                            <div class="title">Inglese</div>
-                            <div>TUT[02]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Martedì</span>
-                          <div class="ora ora_g_due ora_08 viola">
-                            <div class="title">Lab. Inglese</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 blu">
-                            <div class="title">Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_11 arancione">
-                            <div class="title">Storia</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_12 verde">
-                            <div class="title">Italiano</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Mercoledì</span>
-                          <div class="ora ora_g_due ora_09 rosso">
-                            <div class="title">Tedesco</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_g_tre ora_10 blu">
-                            <div class="title">Lab. Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_13 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Giovedì</span>
-                          <div class="ora ora_08 verde-acqua">
-                            <div class="title">Matematica</div>
-                            <div>TUT[02]</div>
-                          </div>
-                          <div class="ora ora_09 blu">
-                            <div class="title">Sistemi e Reti</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 arancione">
-                            <div class="title">Storia</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_12 viola">
-                            <div class="title">Inglese</div>
-                            <div>TUT[02]</div>
-                          </div>
-                        </li>
-                        <li class="giorno">
-                          <span class="nome">Venerdì</span>
-                          <div class="ora ora_g_due ora_08 verde">
-                            <div class="title">Italiano</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                          <div class="ora ora_10 rosso">
-                            <div class="title">Tedesco</div>
-                            <div>LEC[SL1]</div>
-                          </div>
-                        </li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="container" data-masonry='{ "itemSelector": ".card" }'>
+              
             </div>
             <!-- End Page Header -->
           </div>

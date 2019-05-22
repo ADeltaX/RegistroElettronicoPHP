@@ -115,7 +115,7 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                 <h3 class="page-title">Professori e Materie</h3>
               </div>
             </div>
-            <div class="container" data-masonry='{ "itemSelector": ".card" }'>
+            <div class="container">
               <?php
                 $table = '<div class="row">
                   <div class="col">
@@ -134,17 +134,17 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
                           </thead>
                           <tbody>';
 
-$result = mysqli_query($db,"SELECT professori.Utente, materie.Descrizione
-                          FROM professorimaterie
-                          INNER JOIN professori ON professori.IdProfessore = professorimaterie.IdProfessore
-                          INNER JOIN materie ON materie.IdMateria = professorimaterie.IdMateria
-                          INNER JOIN studenti ON studenti.Classe = professorimaterie.Classe
-                          WHERE studenti.Classe='".$id."';");
+$result = mysqli_query($db,"SELECT gestutenti.Nome, gestutenti.Cognome, materie.Descrizione
+                            FROM professorimaterie
+                            INNER JOIN professori ON professori.IdProfessore = professorimaterie.IdProfessore
+                            INNER JOIN gestutenti ON professori.Utente = gestutenti.Utente
+                            INNER JOIN materie ON materie.IdMateria = professorimaterie.IdMateria
+                            INNER JOIN studenti ON studenti.Classe = professorimaterie.Classe
+                            WHERE studenti.Utente = '".$id."';");
               $body = "";
               while($row = mysqli_fetch_array($result))
               {
-                  //. "</td><td>" . $row['Tipo']
-                  $body .= "<tr><td>". $row['Utente'] . "</td><td>" . $row['Descrizione']. "</td></tr>";
+                  $body .= "<tr><td>" . $row['Cognome'] . " " . $row['Nome']  . "</td><td>" . $row['Descrizione']. "</td></tr>";
               }
 
               if (!empty($body))

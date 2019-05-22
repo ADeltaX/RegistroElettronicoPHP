@@ -149,7 +149,6 @@ if ($tipoutente != 3) //Se non è uno studente riportalo all'homepage
               $body = "";
               while($row = mysqli_fetch_array($result))
               {
-                  //. "</td><td>" . $row['Tipo']
                    $body .= "<tr><td>". $row['Descrizione'] . "</td><td>" . $row['Cognome'] . " " . $row['Nome']  . "</td><td>" . $row['Data']  . "</td><td>" . $row['Voto'] . "</td></tr>";
               }
 
